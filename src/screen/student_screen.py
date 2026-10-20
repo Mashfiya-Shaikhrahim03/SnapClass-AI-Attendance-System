@@ -12,7 +12,7 @@ from src.pipelines.voice_pipeline import get_voice_embedding
 from src.database.db import get_all_students, create_student, get_student_subjects, get_student_attendance, unenroll_student_to_subject
 import time
 
-from src.components.dilalog_enroll import enroll_dialog
+from src.components.dialog_enroll import enroll_dialog
 from src.components.subject_card import subject_card
 
 def student_dashboard():
@@ -41,7 +41,7 @@ def student_dashboard():
         subjects = get_student_subjects(student_id)
         logs = get_student_attendance(student_id)
 
-    status_maps ={}
+    stats_map ={}
 
     for log in logs:
         sid = log['student_id']
@@ -147,7 +147,7 @@ def student_screen():
                 if new_name:
                     with st.spinner('Creating profile...'):
                         img = np.array(Image.open(photo_source))
-                        encodings = get_face_embedings(img)
+                        encodings = get_face_embeddings(img)
                         if encodings:
                             fac_emb = encodings[0].tolist()  
 

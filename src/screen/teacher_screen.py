@@ -5,9 +5,9 @@ from src.components.header import header_dashboard
 from src.components.footer import footer_dashboard
 from src.components.subject_card import subject_card
 from src.database.db import check_teacher_exist, create_teacher, teacher_login, get_teacher_subjects, get_attendance_for_teacher
-from src.components.dialog_create_subject import ceate_subject_dialog
-from src.components.dialog_share_Subject import share_Subject_Dialog
-from src.components.dialog_and_photo import add_dialog
+from src.components.dialog_create_subject import create_subject_dialog
+from src.components.dialog_share_subject import share_subject_dialog
+from src.components.dialog_add_photo import add_photos_dialog
 
 from src.pipelines.face_pipeline import predict_attendance
 from src.components.dialog_attendance_results import attendance_result_dialog
@@ -16,7 +16,7 @@ import numpy as np
 from datetime import datetime
 import pandas as pd
 from src.database.config import supabase
-from src.components.dialog_voice_ATtendance import voice_attendance_dialog
+from src.components.dialog_voice_attendance import voice_attendance_dialog
 
 def teacher_screen():
 
@@ -73,7 +73,7 @@ def teacher_dashboard():
             teacher_tab_take_attendance()
 
         if st.session_state.current_teacher_tab == "manage_subjects":
-            teacher_tab_manage_subjects()
+            teacher_tab_Manage_Subjects()
 
         if st.session_state.current_teacher_tab == "attendance_records":
             teacher_tab_attendance_records()
@@ -103,6 +103,7 @@ def teacher_tab_take_attendance():
         selected_subjects_Label = st.selecbox('Select subject', options=list(subject_options.keys()))
     with col2:
         if st.button('Add photos', type='primary', icon=':material/photo_prints:', width='stretch'):
+
             add_photos_dialog()
 
     selected_subject_id = subject_options(selected_subjects_Label)       
@@ -169,7 +170,7 @@ def teacher_tab_take_attendance():
                  attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
     with c3:
         if st.button('Use voice Attendance', type='primary', width='stretch', icon=':Material/mic:'):
-                 voice_attendance_dialog(selected_subject_id)       
+            voice_attendance_dialog(selected_subject_id)       
 
 
 def teacher_tab_Manage_Subjects():
@@ -194,7 +195,7 @@ def teacher_tab_Manage_Subjects():
 
                 def share_btn():
                     if st.button(f"Share Code: {sub['name']}", key=f"share_{sub['subject_code']}", icon=":material/share:"):
-                        share_Subject_dialog(sub['name'], sub['subject_code'])
+                        share_subject_dialog(sub['name'], sub['subject_code'])
                     st.space()
 
                 subject_card(
