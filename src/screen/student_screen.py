@@ -139,4 +139,39 @@ def student_screen():
             audio_data = None
 
             try:
+                audio_data = st.audio_input('Record a short phrase like I am preset. My name is mashfiya')
+            except Exception:
+                st.error('Audio Data failed!')
+
+            if st.button("Create Account", type='primary'):
+                if new_name:
+                    with st.spinner('Creating profile...'):
+                        img = np.array(Image.open(photo_source))
+                        encodings = get_face_embedings(img)
+                        if encodings:
+                            fac_emb = encodings[0].tolist()  
+
+                            voic_emb = None
+                            if audio_data:
+                                voic_emb = get_voice_embedding(audio_data.read())
+
+                            response_data = create_student(new_name ,face_embedding=fac_emb, voice_embedding=voic_emb)
+                            if response_data:
+
+                                train_classifier()
+                                st.session_state.is_logged_in = True
+                                st.session_state.user_role = 'student'
+                                st.session_state.student_data = response_data[0]
+                                st.toast(F'Profile Created! Hi {new_name}!')
+                                time.sleep(1)
+                                st.rerun()
+
+                        else:
                 
+                            st.error('Couldnt capture your facial featurea for registration')
+
+                else :
+                    st.warning('Please enter your name!')
+
+
+    footer_dashboard()                
