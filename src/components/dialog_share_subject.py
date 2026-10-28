@@ -3,12 +3,13 @@ import streamlit as st
 import segno
 import io
 
-@st.dialog("Share class Link")
+
+@st.dialog("Share Class Link")
 def share_subject_dialog(subject_name, subject_code):
-    app_domain = "snapClass-main.streamlit.app"
+    app_domain = "snapclass-main.streamlit.app"
     join_url = f"{app_domain}/?join-code={subject_code}"
 
-    st.header("Scan to join")
+    st.header("Scan to Join")
 
     qr = segno.make(join_url)
 
@@ -25,6 +26,7 @@ def share_subject_dialog(subject_name, subject_code):
         st.info('Copy this link to share on Whatsapp or Email')
 
     with col2:
-        st.markdown('### Scan to join')
+        st.markdown('### Scan to Join')
         st.image(out.getvalue(), caption='QRCODE for class joining')
-             
+
+        
