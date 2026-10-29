@@ -35,7 +35,12 @@ def voice_attendance_dialog(selected_subject_id):
                 st.error('No enrolled students have voice profiles registerd')
                 return
             
-            audio_bytes = audio_data.read()
+            if audio_data is None:
+                    
+                    st.warning("Please record your voice before submitting.")
+                    return
+
+            audio_bytes = audio_data.getvalue()
 
             detected_scores = process_bulk_audio(audio_bytes, candidates_dict)
 
