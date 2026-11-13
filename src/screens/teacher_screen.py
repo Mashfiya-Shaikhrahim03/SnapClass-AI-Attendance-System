@@ -183,8 +183,9 @@ def teacher_tab_take_attendance():
                             'timestamp': current_timestamp,
                             'is_present': bool(is_present)
                         })
+                        
 
-                attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
+                        attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
 
     with c3:
         if st.button('Use Voice Attendance', type='primary', width='stretch', icon=':material/mic:'):
@@ -312,9 +313,9 @@ def teacher_screen_login():
     st.space()
 
 
-    teacher_username = st.text_input("Enter username", placeholder='ananyaroy')
+    teacher_username = st.text_input("Enter username", placeholder='mashfiya')
 
-    teacher_pass = st.text_input("Enter password", type='password', placeholder="Enter password")
+    teacher_pass = st.text_input("Enter password", type='password', placeholder="Enter your password")
 
     st.divider()
 
@@ -370,13 +371,13 @@ def teacher_screen_register():
     st.space()
 
     
-    teacher_username = st.text_input("Enter username", placeholder='ananyaroy')
+    teacher_username = st.text_input("Enter your username", placeholder='mashfiya')
 
-    teacher_name = st.text_input("Enter name", placeholder='Ananya Roy')
+    teacher_name = st.text_input("Enter your name", placeholder='sk.Mashfiya')
 
-    teacher_pass = st.text_input("Enter password", type='password', placeholder="Enter password")
+    teacher_pass = st.text_input("Enter your password", type='password', placeholder="Enter your password")
 
-    teacher_pass_confirm = st.text_input("Confirm your password", type='password', placeholder="Enter password")
+    teacher_pass_confirm = st.text_input("Confirm your password", type='password', placeholder="Enter your password")
 
     st.divider()
 
