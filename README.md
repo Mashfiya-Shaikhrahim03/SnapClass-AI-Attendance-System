@@ -1,6 +1,4 @@
-import pypandoc
-
-readme = r"""# SnapClass – AI-Powered Attendance Management System
+# SnapClass – AI-Powered Attendance Management System
 
 SnapClass is an intelligent attendance system designed to reduce the time teachers spend taking attendance manually.
 
